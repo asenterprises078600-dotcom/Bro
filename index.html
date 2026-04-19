@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>🚨 SYSTEM OWNED BY SARFARAZ DON 🚨</title>
+    <style>
+        body { background: #000; color: #f00; font-family: 'Courier New', monospace; text-align: center; margin: 0; overflow-x: hidden; height: 100vh; }
+        #trigger { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; cursor: pointer; }
+        
+        .don-title { font-size: 40px; font-weight: bold; color: #00ffff; text-shadow: 0 0 15px #00ffff; margin-top: 15px; }
+        
+        #target-photo {
+            width: 180px; height: 180px; object-fit: cover; border-radius: 15px;
+            border: 4px solid red; box-shadow: 0 0 30px red; display: none; margin: 10px auto;
+        }
+
+        #console { text-align: left; padding: 10px; color: #0f0; font-size: 12px; height: 120px; overflow: hidden; background: rgba(0, 15, 0, 0.9); border: 1px solid #0f0; margin: 10px; }
+
+        .payment-card { 
+            background: #111; border: 3px solid #f00; padding: 15px; margin: 0 auto; 
+            width: 90%; display: none; box-shadow: 0 0 50px red; border-radius: 15px; 
+            position: relative; z-index: 10000; color: white;
+        }
+
+        .qr-frame { background: white; padding: 10px; display: inline-block; border-radius: 10px; margin: 10px 0; }
+        
+        input { width: 80%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #f00; color: #0f0; text-align: center; border-radius: 5px; }
+        
+        .upi-btn { background: #28a745; color: #fff; padding: 12px; border-radius: 8px; text-decoration: none; display: block; font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+        
+        .shake { animation: shake 0.2s infinite; }
+        @keyframes shake { 0% { transform: translate(2px, 2px); } 50% { transform: translate(-2px, -2px); } 100% { transform: translate(2px, 2px); } }
+    </style>
+</head>
+<body>
+
+    <div id="trigger" onclick="kickOff()"></div>
+
+    <div id="main-content">
+        <div class="don-title">SARFARAZ DON</div>
+        <p id="click-msg" style="color: yellow;">>>> CRITICAL SECURITY ALERT! <<< <br> [TOUCH TO SCAN SYSTEM]</p>
+
+        <img id="target-photo" src="https://i.ibb.co/DDQgNmxh/IMG-20260419-123713.png">
+
+        <div id="hacker-ui"><div id="console"></div></div>
+
+        <div class="payment-card" id="payCard">
+            <h3 style="color:red; margin:0;">🔐 ALL FILES ENCRYPTED</h3>
+            <p style="font-size: 13px; margin: 5px;">Unlock Fee: ₹99.99 (Pay to Sarfaraz Don)</p>
+            
+            <div class="qr-frame">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=9211698297@ybl%26pn=Sarfaraz%26am=99.99%26cu=INR" width="200" alt="UPI QR">
+            </div>
+
+            <a href="upi://pay?pa=9211698297@ybl&pn=Sarfaraz&am=99.99&cu=INR" class="upi-btn">Pay with PhonePe/GPay</a>
+
+            <input type="number" id="utr-input" placeholder="Enter 12-Digit UTR Number">
+            <button onclick="verifyUTR()" style="background:red; color:white; border:none; padding:10px 20px; border-radius:5px; width:80%; font-weight:bold;">VERIFY & UNLOCK</button>
+            <p id="utr-status" style="font-size:11px; margin-top:5px; color:#aaa;"></p>
+        </div>
+    </div>
+
+    <script>
+        const consoleBox = document.getElementById('console');
+        const payCard = document.getElementById('payCard');
+        const targetPhoto = document.getElementById('target-photo');
+        const trigger = document.getElementById('trigger');
+        let running = false;
+
+        const lines = [
+            "> Connecting to Don's Server...", 
+            "> Target Identified: USER_0421", 
+            "SHOW_PHOTO",
+            "> Stealing Media & Contacts...", 
+            "> Deleting Android/System32...", 
+            "> WARNING: 85% Data Compromised!", 
+            "> ALL FILES LOCKED BY SARFARAZ DON."
+        ];
+
+        function speak(t) {
+            const m = new SpeechSynthesisUtterance(t);
+            m.rate = 0.85;
+            window.speechSynthesis.speak(m);
+        }
+
+        function kickOff() {
+            if(running) return;
+            running = true;
+            trigger.style.display = "none";
+            document.getElementById('click-msg').style.display = "none";
+            document.body.classList.add('shake');
+            
+            speak("System hacked by Sarfaraz Don. Your photos are stolen. Pay 99 rupees immediately or your data will be deleted forever.");
+
+            let i = 0;
+            const timer = setInterval(() => {
+                if(i < lines.length) {
+                    if (lines[i] === "SHOW_PHOTO") {
+                        targetPhoto.style.display = "block";
+                    } else {
+                        let p = document.createElement('div');
+                        p.innerHTML = lines[i];
+                        consoleBox.appendChild(p);
+                    }
+                    i++;
+                } else {
+                    clearInterval(timer);
+                    document.body.classList.remove('shake');
+                    document.getElementById('hacker-ui').style.display = 'none';
+                    targetPhoto.style.width = "100px";
+                    targetPhoto.style.height = "100px";
+                    payCard.style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        function verifyUTR() {
+            const utr = document.getElementById('utr-input').value;
+            const status = document.getElementById('utr-status');
+            if(utr.length < 10) {
+                status.innerHTML = "❌ Error: UTR too short! Formatting drive...";
+                status.style.color = "red";
+            } else {
+                status.innerHTML = "⌛ Checking with Server... [FAILED]";
+                speak("Verification failed. Payment not found. Permanent deletion starting in 5 minutes.");
+                setTimeout(() => { alert("❌ PAYMENT ERROR: UTR Not Found. Data deletion in progress!"); }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
